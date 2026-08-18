@@ -7,7 +7,7 @@ public:
 
         while (low <= high) {
             mid = low + (high - low) / 2;
-            if (canFinish(piles, h, mid)) {
+            if (canFinish(piles,mid ) <= h) {
                 high = mid - 1;
             } else {
                 low = mid + 1;
@@ -16,13 +16,12 @@ public:
         return low;
     }
 
-    bool canFinish(vector<int>& piles, int h, int k) {
+    long long canFinish(vector<int>& piles,  int k) {
         long long hours = 0;
         for (int pile : piles) {
             hours += (pile + k - 1) / k;
-            if (hours > h)
-                return false;
+            
         }
-        return h >= hours;
+        return hours;
     }
 };
