@@ -1,29 +1,26 @@
 class Solution {
 public:
     int shipWithinDays(vector<int>& weights, int days) {
-        
-
-        int low = *max_element(weights.begin(), weights.end());
-        int high = accumulate(weights.begin(), weights.end(), 0);
-        while (low < high) {
-            int mid = low + (high - low) / 2;
-            int sum = 0;
-            int count = 1;
-            for (int weight : weights) {
-
-                if (sum + weight <= mid) {
-                    sum += weight;
-                } else {
-                    count++;
-                    sum = weight;
+        int l = *max_element(weights.begin(), weights.end());
+        int r = accumulate(weights.begin(), weights.end(), 0);
+        while(l < r){
+            int mid = l + (r - l)/2;
+            int curr_load = 0, d = 1;
+            for(auto w : weights){
+                if(curr_load + w <= mid){
+                    curr_load += w;
+                }else{
+                    curr_load = w;
+                    d++;
                 }
             }
-            if (count <= days) {
-                high = mid;
-            } else {
-                low = mid + 1;
+            if(d <= days){
+                r = mid;
+            }else{
+                l = mid + 1;
             }
         }
-        return low;
+
+        return l;
     }
 };
