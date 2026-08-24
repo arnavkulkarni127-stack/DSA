@@ -1,20 +1,16 @@
 class Solution {
 public:
     int findKthPositive(vector<int>& arr, int k) {
-      int low, high, mid;
-      low = 0;
-      high = arr.size() - 1;
-      while(low <= high){
-        mid = low+(high - low)/2;
-        if(arr[mid] - (mid+1) < k){
-            low = mid +1;
-        }
-        else{
-            high = mid-1;
+   int n=arr.size();
 
+        for(int num:arr){
+            if(num<=k){
+                k++;
+            }else{
+                break;
+            }
         }
-      }
-      return low + k;
+        return k; // low is the index at which the missing element should havve been maybe
 
     }
 };
