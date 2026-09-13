@@ -2,37 +2,30 @@ class Solution {
 public:
     string reverseWords(string s) {
         reverse(s.begin(), s.end());
-    int left, right;
-    left = 0;
-    right = 0;
-   while(right < s.length()){
-       while(right < s.length() && s[right] == ' ') right++;
+        int i= 0;
+        int j = 0;
+        while(j < s.length()){
+        while(j < s.length() && s[j] == ' ') j++;
+        i = j;
+        while(j < s.length() && s[j] != ' ') j++;
+        reverse(s.begin() + i, s.begin() + j);
+        }
+        int l = 0;
+        int m = 0;
+    while(m < s.length()){
+        while(m < s.length() && s[m] == ' ') m++;
 
-left = right;
-while(right < s.length() && s[right] != ' ') right++;
-reverse(s.begin() + left, s.begin() + right);
+        while(m < s.length() && s[m] != ' ') s[l++] = s[m++];
 
-    }
-    int j, i;
-    j = 0; 
-    i= 0;
-
-while(j < s.length()){
-    while(j < s.length() && s[j] == ' ') j++;
-    while(j < s.length() && s[j] != ' ') 
-    s[i++] = s[j++];
-
- int k = j;
- while(k < s.length() && s[k] == ' ') k++;
- if(k < s.length()) {
- s[i++] = ' ';
-}
-   
-
-}
+        int j = m;
+        while(j < s.length() && s[j] == ' ') j++;
+        if(j < s.length()) s[l++] = ' ';
     
-s.resize(i);
-return s;
+    }
+    s.resize(l); //resize the string to the i i.e. remove the empty places after this point
+
+    return s;
+    
     }
 
 };
