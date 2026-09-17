@@ -12,8 +12,8 @@ public:
 
                 for (int k = 0; k < 26; k++) {
                     if (freq[k] > 0) {
-                        maxf = max(freq[k], maxf);
-                        minf = min(freq[k], minf);
+                        if(freq[k] > maxf) maxf = freq[k];
+                        if(freq[k] < minf) minf = freq[k];
                     }
                     
                 }
