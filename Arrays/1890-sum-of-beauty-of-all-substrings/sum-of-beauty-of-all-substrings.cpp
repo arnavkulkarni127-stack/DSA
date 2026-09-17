@@ -1,15 +1,12 @@
 class Solution {
 public:
     int beautySum(string s) {
-        int i, j;
-    
         int beauty = 0;
-        for (i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             vector<int> freq(26, 0);
-            j = i;
-            while (j < s.length()) {
+         for(int j = i; j < s.length(); j++) {
                 freq[s[j] - 'a']++;
-                j++;
+             
                 int minf = INT_MAX;
                 int maxf = 0;
 
