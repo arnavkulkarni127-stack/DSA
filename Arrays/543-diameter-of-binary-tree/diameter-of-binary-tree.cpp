@@ -12,19 +12,17 @@
  */
 class Solution {
 public:
-int maximum = INT_MIN;
-    int height(TreeNode* root) {
-        if (!root) return 0;
-            int leftHeight = height(root->left);
-            int rightHeight = height(root->right);
-            int current = leftHeight + rightHeight;
-            maximum = max(maximum, current);
-            return max(leftHeight, rightHeight) + 1;
-        
+    int height(TreeNode* root, int& maximum) {
+        if (!root)
+            return 0;
+        int leftHeight = height(root->left,maximum);
+        int rightHeight = height(root->right, maximum);
+        maximum = max(maximum, leftHeight + rightHeight);
+        return max(leftHeight, rightHeight) + 1;
     }
     int diameterOfBinaryTree(TreeNode* root) {
-        if(root == NULL) return 0;
-         height(root);
-         return maximum;
+        int maximum = INT_MIN;
+        height(root, maximum);
+        return maximum;
     }
 };
